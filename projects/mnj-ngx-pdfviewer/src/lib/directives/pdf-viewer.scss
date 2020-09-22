@@ -1,0 +1,146 @@
+// PAGES
+.mnj-page-viewer {
+  .pdf-page {
+    margin: 10px auto;
+
+    // TEXT LAYER
+    > .textLayer {
+      > span {
+        color: transparent;
+        cursor: text;
+        position: absolute;
+        transform-origin: 0 0;
+        white-space: pre;
+      }
+    }
+
+    // ANNOTATIONS
+    > .annotationLayer {
+      .popupWrapper {
+        position: absolute;
+        width: 10em;
+
+        .popup {
+          border-radius: 2px;
+          cursor: pointer;
+          margin-left: 5px;
+          max-width: 20em;
+          padding: 6px;
+          position: absolute;
+          word-wrap: break-word;
+          z-index: 200;
+
+          > * {
+            font-size: 9px;
+          }
+
+          h1,
+          span {
+            display: inline-block;
+          }
+
+          p {
+            border-top: 1px solid currentColor;
+            margin-top: 2px;
+            padding-top: 2px;
+          }
+        }
+      }
+
+      > section {
+        position: absolute;
+      }
+
+      .linkAnnotation > a,
+      .buttonWidgetAnnotation.pushButton > a {
+        font-size: 1em;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// THUMBNAIL
+.mnj-thumbnail-viewer {
+  .pdf-thumbnail {
+    margin: 10px auto;
+  }
+}
+
+// TOC
+.mnj-toc-viewer {
+  $toc-arrow-size: 15px;
+
+  .outlineWithDeepNesting {
+    & > .outlineItem {
+      margin: 0 10px;
+    }
+
+    .outlineItemToggler {
+      float: left;
+      height: 0;
+      position: relative;
+      width: 0;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        height: $toc-arrow-size;
+        position: absolute;
+        width: $toc-arrow-size;
+      }
+
+      &.outlineItemsHidden ~ .outlineItems {
+        display: none;
+      }
+    }
+
+    .outlineItem {
+      > a {
+        border-radius: 2px;
+        display: inline-block;
+        font-size: 13px;
+        height: auto;
+        line-height: $toc-arrow-size;
+        margin-bottom: 1px;
+        margin-left: $toc-arrow-size;
+        min-width: calc(100% - #{$toc-arrow-size});
+        padding: 2px 0 5px 4px;
+        text-decoration: none;
+        user-select: none;
+        white-space: normal;
+      }
+
+      > .outlineItems {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+// ATTACHMENTS
+.mnj-attachments-viewer {
+  .attachmentsItem {
+    > button {
+      border: 1px solid currentColor;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: inline-block;
+      height: 40px;
+      margin: 0;
+      outline: none;
+      overflow: visible;
+      padding: 0 15px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+  }
+}

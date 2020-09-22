@@ -1,0 +1,295 @@
+<mat-toolbar class="header mat-elevation-z6" color="primary">
+  <nav mat-toolbar-row class="header__nav">
+    <span class="header__nav--title">MNJ NG PDF Viewer</span>
+    <span class="header__nav--spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+        />
+      </svg>
+    </button>
+    <mat-menu #themeMenu="matMenu">
+      <button mat-menu-item (click)="theme = 'light-theme'">Light Theme</button>
+      <button mat-menu-item (click)="theme = 'dark-theme'">Dark Theme</button>
+    </mat-menu>
+    <a mat-button class="header__nav--github-button" href="https://github.com/Davidmnj91/mnj-ngx-pdfviewer">
+      <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true">
+        <path
+          fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+        ></path>
+      </svg>
+      Github
+    </a>
+  </nav>
+</mat-toolbar>
+<div *ngIf="_showLoader" [@fadeInOut] class="spinner">
+  <mat-spinner></mat-spinner>
+  <p class="mat-h3 spinner--progress">{{ _loadingProgress }}%</p>
+</div>
+<mat-card class="main">
+  <div class="container b-w-0" (drop)="onPdfDropped($event)">
+    <div fxLayoutGap="15px" fxLayoutAlign="start center">
+      <div fxLayoutAlign="center center">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-divider vertical></mat-divider>
+      </div>
+      <div
+        #controlsContainer
+        [formGroup]="viewerForm"
+        style="overflow: hidden"
+        fxFlex="1 0 0%"
+        fxLayout="row nowrap"
+        fxLayoutGap="15px"
+        fxLayoutAlign="start center"
+      >
+        <div #pageControls fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button (click)="previousPage()"><mat-icon>navigate_before</mat-icon></button>
+          <span fxFlex="1 0 auto"> {{ pageControl.value }} of {{ pdf?.numPages }}</span>
+          <button mat-icon-button (click)="nextPage()"><mat-icon>navigate_next</mat-icon></button>
+        </div>
+        <mat-divider vertical></mat-divider>
+        <div #scaleControls fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button (click)="zoomOut()"><mat-icon>zoom_out</mat-icon></button>
+          <span>{{ scaleControl.value * 100 }}%</span>
+          <button mat-icon-button (click)="zoomIn()"><mat-icon>zoom_in</mat-icon></button>
+        </div>
+        <mat-divider vertical></mat-divider>
+        <div #rotationControls fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button (click)="rotateLeft()"><mat-icon>rotate_left</mat-icon></button>
+          <span>{{ rotationControl.value }}º</span>
+          <button mat-icon-button (click)="rotateRight()"><mat-icon>rotate_right</mat-icon></button>
+        </div>
+        <mat-divider vertical></mat-divider>
+        <div #searchControls fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button [matMenuTriggerFor]="searchOptions"><mat-icon>search</mat-icon></button>
+          <ng-container *ngIf="matchesFound && matchesFound.total">
+            <button mat-icon-button (click)="viewer.findPrevious()"><mat-icon>navigate_before</mat-icon></button>
+            <span fxFlex="1 0 auto"> {{ matchesFound.current }} of {{ matchesFound.total }}</span>
+            <button mat-icon-button (click)="viewer.findNext()"><mat-icon>navigate_next</mat-icon></button>
+          </ng-container>
+        </div>
+        <mat-divider vertical></mat-divider>
+        <div #miscControls fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-icon-button mnjPdfUpload [for]="viewer">
+            <mat-icon>cloud_upload</mat-icon>
+          </button>
+          <mat-divider vertical></mat-divider>
+          <button mat-icon-button mnjPdfDownload [for]="viewer">
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+          <mat-divider vertical></mat-divider>
+          <button mat-icon-button mnjPdfPrint [for]="viewer">
+            <mat-icon>print</mat-icon>
+          </button>
+          <mat-divider vertical></mat-divider>
+          <button mat-icon-button mnjPdfProperties [for]="viewer" (pdfProperties)="showProperties($event)">
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button *ngIf="hiddenNodes.length > 0" mat-icon-button [matMenuTriggerFor]="controlsMenu">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </div>
+    <div class="pdf-container overflow-y-hidden">
+      <mnj-pdf-viewer
+        #viewer="mnjPdfViewer"
+        [pdfSrc]="pdfSrc"
+        [scale]="scaleControl.value"
+        [rotation]="rotationControl.value"
+        [searchOptions]="searchForm.value"
+        (pdfLoaded)="onPdfLoaded($event)"
+        (pdfProperties)="onPdfProperties($event)"
+        (pageViewerPageChanging)="pageControl.setValue($event.actualPageIndex)"
+        (pageViewerRotationChanging)="rotationControl.setValue($event.actualRotation)"
+        (pageViewerScaleChanging)="updateScale($event)"
+        (pdfSearchComplete)="onSearchComplete($event)"
+        (pdfSearchProgress)="onSearchState($event)"
+        (pdfPrintProgress)="onPrintProgress($event)"
+      >
+      </mnj-pdf-viewer>
+      <mat-sidenav-container autosize (backdropClick)="sidenav.close()">
+        <mat-sidenav #sidenav mode="side">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon [matTooltip]="'thumbnails'">collections</mat-icon>
+              </ng-template>
+              <div class="tab-body-viewer">
+                <mnj-pdf-thumbnail-viewer [for]="viewer"></mnj-pdf-thumbnail-viewer>
+              </div>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon [matTooltip]="'toc'">list</mat-icon>
+              </ng-template>
+              <div class="tab-body-viewer">
+                <mnj-pdf-toc-viewer [for]="viewer"></mnj-pdf-toc-viewer>
+              </div>
+            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon [matTooltip]="'attachments'">attach_file</mat-icon>
+              </ng-template>
+              <div class="tab-body-viewer">
+                <mnj-pdf-attachments-viewer [for]="viewer"></mnj-pdf-attachments-viewer>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <mnj-pdf-page-viewer [for]="viewer"></mnj-pdf-page-viewer>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </div>
+  </div>
+
+  <mat-menu #searchOptions="matMenu">
+    <form
+      mat-menu-item
+      style="padding: 10px; height: 70px"
+      [formGroup]="searchForm"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+      (click)="$event.stopPropagation()"
+    >
+      <mat-form-field>
+        <input matInput mnjPdfSearchInput placeholder="Search" [for]="viewer" />
+      </mat-form-field>
+      <mat-checkbox [color]="color" formControlName="highlightAll">HighlightAll</mat-checkbox>
+      <mat-checkbox [color]="color" formControlName="caseSensitive">Match Case</mat-checkbox>
+      <mat-checkbox [color]="color" formControlName="entireWord">Whole Words</mat-checkbox>
+      <mat-checkbox [color]="color" formControlName="phraseSearch">Search Phrase</mat-checkbox>
+    </form>
+  </mat-menu>
+
+  <mat-menu #controlsMenu="matMenu">
+    <div fxLayout="column">
+      <ng-container *ngIf="pageControls.style.visibility === 'hidden'">
+        <button mat-menu-item color="primary" (click)="previousPage()">
+          <mat-icon>navigate_before</mat-icon>
+          <span>Previous Page</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="nextPage()">
+          <mat-icon>navigate_next</mat-icon>
+          <span>Next Page</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="scaleControls.style.visibility === 'hidden'">
+        <button mat-menu-item color="primary" (click)="zoomOut()">
+          <mat-icon>zoom_out</mat-icon>
+          <span>Zoom out</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="zoomIn()">
+          <mat-icon>zoom_in</mat-icon>
+          <span>Zoom in</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="rotationControls.style.visibility === 'hidden'">
+        <button mat-menu-item color="primary" (click)="rotateLeft()">
+          <mat-icon>rotate_left</mat-icon>
+          <span>Rotate Left</span>
+        </button>
+        <button mat-menu-item color="primary" (click)="rotateRight()">
+          <mat-icon>rotate_right</mat-icon>
+          <span>Rotate Right</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="miscControls.style.visibility === 'hidden'">
+        <button mat-menu-item color="primary" mnjPdfDownload [for]="viewer" [disabled]="!pdfSrc">
+          <mat-icon>cloud_download</mat-icon>
+          <span>Download</span>
+        </button>
+        <button mat-menu-item color="primary" mnjPdfUpload [for]="viewer" (fileLoaded)="onPdfUploaded($event)">
+          <mat-icon>cloud_upload</mat-icon>
+          <span>Upload</span>
+        </button>
+        <button mat-menu-item color="primary" mnjPdfPrint [for]="viewer" [disabled]="!pdfSrc">
+          <mat-icon>print</mat-icon>
+          <span>Print</span>
+        </button>
+        <button
+          mat-menu-item
+          color="primary"
+          mnjPdfProperties
+          [for]="viewer"
+          (pdfProperties)="showProperties($event)"
+          [disabled]="!pdfSrc"
+        >
+          <mat-icon>info</mat-icon>
+          <span>Pdf Properties</span>
+        </button>
+      </ng-container>
+    </div>
+  </mat-menu>
+
+  <ng-template #pdfPropertiesDialog>
+    <h4 matDialogTitle>PDF Properties</h4>
+    <mat-dialog-content>
+      <mat-list>
+        <mat-list-item *ngIf="pdfProps.fileName">
+          <div mat-line>File name</div>
+          <div mat-line>{{ pdfProps.fileName }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.fileSize">
+          <div mat-line>File size</div>
+          <div mat-line>{{ pdfProps.fileSize }} bytes</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.title">
+          <div mat-line>Title</div>
+          <div mat-line>{{ pdfProps.title }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.author">
+          <div mat-line>Author</div>
+          <div mat-line>{{ pdfProps.author }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.subject">
+          <div mat-line>Subject</div>
+          <div mat-line>{{ pdfProps.subject }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.keywords">
+          <div mat-line>Keywords</div>
+          <div mat-line>{{ pdfProps.keywords }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.creationDate">
+          <div mat-line>Created on</div>
+          <div mat-line>{{ pdfProps.creationDate | date: 'short' }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.updateDate">
+          <div mat-line>Modified on</div>
+          <div mat-line>{{ pdfProps.updateDate | date: 'short' }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.creator">
+          <div mat-line>Created by</div>
+          <div mat-line>{{ pdfProps.creator }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.pdfProducer">
+          <div mat-line>Pdf producer</div>
+          <div mat-line>{{ pdfProps.pdfProducer }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.pdfVersion">
+          <div mat-line>Pdf version</div>
+          <div mat-line>{{ pdfProps.pdfVersion }}</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.pageCount">
+          <div mat-line>Page count</div>
+          <div mat-line>{{ pdfProps.pageCount }} pages</div>
+        </mat-list-item>
+        <mat-list-item *ngIf="pdfProps.pageSize">
+          <div mat-line>Page size</div>
+          <div mat-line>{{ pdfProps.pageSize.width }}px - {{ pdfProps.pageSize.height }}px</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-stroked-button color="primary" [color]="color" matDialogClose autoFocus>
+        <span>Close</span>
+      </button>
+    </mat-dialog-actions>
+  </ng-template>
+</mat-card>

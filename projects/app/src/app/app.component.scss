@@ -1,0 +1,111 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &__nav {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 0 100%;
+
+    &--title {
+      font-size: 400 16px/28px;
+    }
+
+    &--spacer {
+      flex: 1 0 auto;
+    }
+
+    &--github-button {
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+.main {
+  border-radius: 0px;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .pdf-container {
+    border-top: 1px solid rgba($color: #000000, $alpha: 0.12);
+    height: calc(100% - 40px);
+
+    .mat-input,
+    .mat-select {
+      height: 32px;
+    }
+
+    span.mat-body {
+      white-space: nowrap;
+    }
+
+    mat-sidenav-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mat-sidenav-content {
+      display: flex;
+
+      > .mnj-page-viewer {
+        width: 100%;
+      }
+    }
+    .mnj-thumbnail-viewer {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.mat-tab-group {
+  height: 100%;
+
+  .tab-body-viewer {
+    overflow: hidden !important;
+  }
+}
+
+.mat-divider {
+  height: 25px;
+}
+
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d3d379;
+
+  &--progress {
+    position: absolute;
+    margin: 0;
+    line-height: 16px;
+  }
+}

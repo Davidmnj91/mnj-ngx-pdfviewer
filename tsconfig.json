@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/mnj-ngx-pdfviewer/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mnj-ngx-pdfviewer/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/app/tsconfig.spec.json"
+    }
+]
 }

@@ -1,0 +1,13 @@
+{
+  "name": "mnj-ngx-pdfviewer",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^10.0.14",
+    "@angular/core": "^10.0.14",
+    "@angular/cdk": "^10.2.1",
+    "pdfjs-dist": "^2.5.207"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

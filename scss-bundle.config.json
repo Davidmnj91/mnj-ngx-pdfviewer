@@ -1,0 +1,7 @@
+{
+  "bundlerOptions": {
+    "entryFile": "./projects/mnj-ngx-pdfviewer/src/lib/pdf-viewer-theme.scss",
+    "rootDir": "./",
+    "outFile": "dist/mnj-ngx-pdfviewer/pdf-viewer-theme.scss"
+  }
+}
