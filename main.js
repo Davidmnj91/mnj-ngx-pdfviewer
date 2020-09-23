@@ -4,7 +4,7 @@
 /*!******************************************************************************************************************!*\
   !*** /home/runner/work/mnj-ngx-pdfviewer/mnj-ngx-pdfviewer/dist/mnj-ngx-pdfviewer/fesm2015/mnj-ngx-pdfviewer.js ***!
   \******************************************************************************************************************/
-/*! exports provided: AnnotationLayerBuilder, CLEANUP_TIMEOUT, CSS_UNITS, CharacterType, DEFAULT_PDF_VIEW_CONFIG, DEFAULT_SCALE_DELTA, DEFAULT_SCALE_VALUE, DefaultAnnotationLayerFactory, DefaultTextLayerFactory, FindState, MAX_AUTO_SCALE, MAX_SCALE, MIN_SCALE, MNJ_PDF_VIEW_CONFIGURATION, MNJ_PDF_VIEW_CONFIGURATION_FACTORY, MNJ_PDF_VIEW_CONFIGURATION_PROVIDER, MnjPdfViewer, MnjPdfViewerModule, PDFPageViewBuffer, PdfAttachmentViewerRef, PdfAttachmentsViewer, PdfContainer, PdfContainerItem, PdfDownloadButton, PdfDownloadManager, PdfFindController, PdfLinkService, PdfOutlineViewerRef, PdfPageLoading, PdfPageRef, PdfPageViewer, PdfPageViewerRef, PdfPrintButton, PdfPrintManager, PdfPropertiesButton, PdfRenderingQueue, PdfSearchInput, PdfThumbnailRef, PdfThumbnailViewer, PdfThumbnailViewerRef, PdfTocViewer, PdfUploadButton, PdfViewerRef, PdfViewerRegistry, PresentationModeState, PrintDPI, RendererType, RenderingStates, ScrollMode, SpreadMode, TextLayerBuilder, TextLayerMode, approximateFraction, binarySearchFirstItem, getCharacterType, getOutputScale, getPDFFileNameFromURL, getPageSizeMilliliters, getVisibleElements, isElementBottomAfterViewTop, isElementRightAfterViewLeft, isPortraitOrientation, isValidRotation, parseQueryString, rotateLeft, rotateRight, roundToDivide, scrollIntoView, watchScroll */
+/*! exports provided: AnnotationLayerBuilder, CLEANUP_TIMEOUT, CSS_UNITS, CharacterType, DEFAULT_PDF_VIEWER_CONFIG, DEFAULT_SCALE_DELTA, DEFAULT_SCALE_VALUE, DefaultAnnotationLayerFactory, DefaultTextLayerFactory, FindState, MAX_AUTO_SCALE, MAX_SCALE, MIN_SCALE, MNJ_PDF_VIEWER_CONFIGURATION, MNJ_PDF_VIEWER_CONFIGURATION_FACTORY, MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER, MnjPdfViewer, MnjPdfViewerModule, PDFPageViewBuffer, PdfAttachmentViewerRef, PdfAttachmentsViewer, PdfContainer, PdfContainerItem, PdfDownloadButton, PdfDownloadManager, PdfFindController, PdfLinkService, PdfOutlineViewerRef, PdfPageLoading, PdfPageRef, PdfPageViewer, PdfPageViewerRef, PdfPrintButton, PdfPrintManager, PdfPropertiesButton, PdfRenderingQueue, PdfSearchInput, PdfThumbnailRef, PdfThumbnailViewer, PdfThumbnailViewerRef, PdfTocViewer, PdfUploadButton, PdfViewerRef, PdfViewerRegistry, PresentationModeState, PrintDPI, RendererType, RenderingStates, ScrollMode, SpreadMode, TextLayerBuilder, TextLayerMode, approximateFraction, binarySearchFirstItem, getCharacterType, getOutputScale, getPDFFileNameFromURL, getPageSizeMilliliters, getVisibleElements, isElementBottomAfterViewTop, isElementRightAfterViewLeft, isPortraitOrientation, isValidRotation, parseQueryString, rotateLeft, rotateRight, roundToDivide, scrollIntoView, watchScroll */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEANUP_TIMEOUT", function() { return CLEANUP_TIMEOUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CSS_UNITS", function() { return CSS_UNITS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CharacterType", function() { return CharacterType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEW_CONFIG", function() { return DEFAULT_PDF_VIEW_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEWER_CONFIG", function() { return DEFAULT_PDF_VIEWER_CONFIG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_SCALE_DELTA", function() { return DEFAULT_SCALE_DELTA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_SCALE_VALUE", function() { return DEFAULT_SCALE_VALUE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultAnnotationLayerFactory", function() { return DefaultAnnotationLayerFactory; });
@@ -22,9 +22,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_AUTO_SCALE", function() { return MAX_AUTO_SCALE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAX_SCALE", function() { return MAX_SCALE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MIN_SCALE", function() { return MIN_SCALE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION", function() { return MNJ_PDF_VIEW_CONFIGURATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_FACTORY", function() { return MNJ_PDF_VIEW_CONFIGURATION_FACTORY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_PROVIDER", function() { return MNJ_PDF_VIEW_CONFIGURATION_PROVIDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION", function() { return MNJ_PDF_VIEWER_CONFIGURATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_FACTORY", function() { return MNJ_PDF_VIEWER_CONFIGURATION_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER", function() { return MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MnjPdfViewer", function() { return MnjPdfViewer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MnjPdfViewerModule", function() { return MnjPdfViewerModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PDFPageViewBuffer", function() { return PDFPageViewBuffer; });
@@ -1796,7 +1796,6 @@ class PdfFindController {
         this.searchComplete = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.searchState = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this._reset();
-        //eventBus.on("findbarclose", this._onFindBarClose.bind(this));
     }
     get highlightMatches() {
         return this._highlightMatches;
@@ -4620,7 +4619,7 @@ class PdfThumbnailViewerRef extends PdfContainer {
     }
 }
 
-const DEFAULT_PDF_VIEW_CONFIG = {
+const DEFAULT_PDF_VIEWER_CONFIG = {
     initialPage: 1,
     scale: 'auto',
     rotation: 0,
@@ -4634,17 +4633,17 @@ const DEFAULT_PDF_VIEW_CONFIG = {
     maxPagesRendered: 10,
     rendererPagesThreshold: 2,
 };
-function MNJ_PDF_VIEW_CONFIGURATION_FACTORY(impl) {
-    return impl || DEFAULT_PDF_VIEW_CONFIG;
+function MNJ_PDF_VIEWER_CONFIGURATION_FACTORY(impl) {
+    return impl || DEFAULT_PDF_VIEWER_CONFIG;
 }
 /**
  * Injection token that can be used to configure the
  * behavior of the pdf viewer components.
  */
-const MNJ_PDF_VIEW_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('PDF_VIEW_CONFIG');
-const MNJ_PDF_VIEW_CONFIGURATION_PROVIDER = {
-    provide: MNJ_PDF_VIEW_CONFIGURATION,
-    useFactory: MNJ_PDF_VIEW_CONFIGURATION_FACTORY,
+const MNJ_PDF_VIEWER_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('PDF_VIEW_CONFIG');
+const MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER = {
+    provide: MNJ_PDF_VIEWER_CONFIGURATION,
+    useFactory: MNJ_PDF_VIEWER_CONFIGURATION_FACTORY,
 };
 
 class PdfViewerRef {
@@ -5121,7 +5120,7 @@ class MnjPdfViewer {
         });
     }
 }
-MnjPdfViewer.ɵfac = function MnjPdfViewer_Factory(t) { return new (t || MnjPdfViewer)(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfRenderingQueue), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfLinkService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfFindController), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfDownloadManager), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfPrintManager), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfViewerRegistry), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(MNJ_PDF_VIEW_CONFIGURATION)); };
+MnjPdfViewer.ɵfac = function MnjPdfViewer_Factory(t) { return new (t || MnjPdfViewer)(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfRenderingQueue), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfLinkService), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfFindController), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfDownloadManager), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfPrintManager), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(PdfViewerRegistry), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"])(MNJ_PDF_VIEWER_CONFIGURATION)); };
 MnjPdfViewer.ɵcmp = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"])({ type: MnjPdfViewer, selectors: [["mnj-pdf-viewer"]], hostAttrs: [1, "mnj-pdf-viewer", "cdk-visually-hidden"], hostVars: 2, hostBindings: function MnjPdfViewer_HostBindings(rf, ctx) { if (rf & 2) {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"])("id", ctx.id)("disabled", ctx.disabled);
     } }, inputs: { pdfSrc: "pdfSrc", page: "page", scale: "scale", rotation: "rotation", searchOptions: "searchOptions", disabled: ["pdfViewerDisabled", "disabled"] }, outputs: { pdfLoaded: "pdfLoaded", pdfProperties: "pdfProperties", pdfSearchProgress: "pdfSearchProgress", pdfSearchComplete: "pdfSearchComplete", pdfPrintProgress: "pdfPrintProgress", pageViewerPagesLoaded: "pageViewerPagesLoaded", pageViewerPageLoaded: "pageViewerPageLoaded", pageViewerPageChanging: "pageViewerPageChanging", pageViewerScaleChanging: "pageViewerScaleChanging", pageViewerRotationChanging: "pageViewerRotationChanging", pageViewerUpdateViewArea: "pageViewerUpdateViewArea", outlineViewerLoaded: "outlineViewerLoaded", attachmentViewerLoaded: "attachmentViewerLoaded" }, exportAs: ["mnjPdfViewer"], features: [Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"])([PdfRenderingQueue, PdfDownloadManager, PdfFindController, PdfLinkService, PdfPrintManager])], decls: 0, vars: 0, template: function MnjPdfViewer_Template(rf, ctx) { }, encapsulation: 2, changeDetection: 0 });
@@ -5142,7 +5141,7 @@ MnjPdfViewer.ɵcmp = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
             }]
     }], function () { return [{ type: PdfRenderingQueue }, { type: PdfLinkService }, { type: PdfFindController }, { type: PdfDownloadManager }, { type: PdfPrintManager }, { type: PdfViewerRegistry }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"] }, { type: undefined, decorators: [{
                 type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [MNJ_PDF_VIEW_CONFIGURATION]
+                args: [MNJ_PDF_VIEWER_CONFIGURATION]
             }] }]; }, { pdfSrc: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], page: [{
@@ -5187,7 +5186,7 @@ MnjPdfViewer.ɵcmp = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefi
 class MnjPdfViewerModule {
 }
 MnjPdfViewerModule.ɵmod = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"])({ type: MnjPdfViewerModule });
-MnjPdfViewerModule.ɵinj = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"])({ factory: function MnjPdfViewerModule_Factory(t) { return new (t || MnjPdfViewerModule)(); }, providers: [MNJ_PDF_VIEW_CONFIGURATION_PROVIDER], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_8__["CommonModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_7__["ScrollingModule"]]] });
+MnjPdfViewerModule.ɵinj = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"])({ factory: function MnjPdfViewerModule_Factory(t) { return new (t || MnjPdfViewerModule)(); }, providers: [MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_8__["CommonModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_7__["ScrollingModule"]]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"])(MnjPdfViewerModule, { declarations: [MnjPdfViewer,
         PdfPageLoading,
         PdfDownloadButton,
@@ -5226,7 +5225,7 @@ MnjPdfViewerModule.ɵinj = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵ
                     PdfUploadButton,
                     PdfPropertiesButton,
                 ],
-                providers: [MNJ_PDF_VIEW_CONFIGURATION_PROVIDER],
+                providers: [MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER],
                 exports: [
                     MnjPdfViewer,
                     PdfPageLoading,
@@ -5959,7 +5958,7 @@ class MnjPdfViewer {
         });
     }
 }
-MnjPdfViewer.ɵfac = function MnjPdfViewer_Factory(t) { return new (t || MnjPdfViewer)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfRenderingQueue"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfLinkService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfFindController"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfDownloadManager"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfPrintManager"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_pdf_viewer_registry__WEBPACK_IMPORTED_MODULE_9__["PdfViewerRegistry"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_6__["MNJ_PDF_VIEW_CONFIGURATION"])); };
+MnjPdfViewer.ɵfac = function MnjPdfViewer_Factory(t) { return new (t || MnjPdfViewer)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfRenderingQueue"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfLinkService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfFindController"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfDownloadManager"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services__WEBPACK_IMPORTED_MODULE_8__["PdfPrintManager"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_pdf_viewer_registry__WEBPACK_IMPORTED_MODULE_9__["PdfViewerRegistry"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_6__["MNJ_PDF_VIEWER_CONFIGURATION"])); };
 MnjPdfViewer.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: MnjPdfViewer, selectors: [["mnj-pdf-viewer"]], hostAttrs: [1, "mnj-pdf-viewer", "cdk-visually-hidden"], hostVars: 2, hostBindings: function MnjPdfViewer_HostBindings(rf, ctx) { if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("id", ctx.id)("disabled", ctx.disabled);
     } }, inputs: { pdfSrc: "pdfSrc", page: "page", scale: "scale", rotation: "rotation", searchOptions: "searchOptions", disabled: ["pdfViewerDisabled", "disabled"] }, outputs: { pdfLoaded: "pdfLoaded", pdfProperties: "pdfProperties", pdfSearchProgress: "pdfSearchProgress", pdfSearchComplete: "pdfSearchComplete", pdfPrintProgress: "pdfPrintProgress", pageViewerPagesLoaded: "pageViewerPagesLoaded", pageViewerPageLoaded: "pageViewerPageLoaded", pageViewerPageChanging: "pageViewerPageChanging", pageViewerScaleChanging: "pageViewerScaleChanging", pageViewerRotationChanging: "pageViewerRotationChanging", pageViewerUpdateViewArea: "pageViewerUpdateViewArea", outlineViewerLoaded: "outlineViewerLoaded", attachmentViewerLoaded: "attachmentViewerLoaded" }, exportAs: ["mnjPdfViewer"], features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵProvidersFeature"]([_services__WEBPACK_IMPORTED_MODULE_8__["PdfRenderingQueue"], _services__WEBPACK_IMPORTED_MODULE_8__["PdfDownloadManager"], _services__WEBPACK_IMPORTED_MODULE_8__["PdfFindController"], _services__WEBPACK_IMPORTED_MODULE_8__["PdfLinkService"], _services__WEBPACK_IMPORTED_MODULE_8__["PdfPrintManager"]])], decls: 0, vars: 0, template: function MnjPdfViewer_Template(rf, ctx) { }, encapsulation: 2, changeDetection: 0 });
@@ -5980,7 +5979,7 @@ MnjPdfViewer.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCompo
             }]
     }], function () { return [{ type: _services__WEBPACK_IMPORTED_MODULE_8__["PdfRenderingQueue"] }, { type: _services__WEBPACK_IMPORTED_MODULE_8__["PdfLinkService"] }, { type: _services__WEBPACK_IMPORTED_MODULE_8__["PdfFindController"] }, { type: _services__WEBPACK_IMPORTED_MODULE_8__["PdfDownloadManager"] }, { type: _services__WEBPACK_IMPORTED_MODULE_8__["PdfPrintManager"] }, { type: _pdf_viewer_registry__WEBPACK_IMPORTED_MODULE_9__["PdfViewerRegistry"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] }, { type: undefined, decorators: [{
                 type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
-                args: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_6__["MNJ_PDF_VIEW_CONFIGURATION"]]
+                args: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_6__["MNJ_PDF_VIEWER_CONFIGURATION"]]
             }] }]; }, { pdfSrc: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
         }], page: [{
@@ -8216,20 +8215,20 @@ class PdfThumbnailViewerRef extends _pdf_container__WEBPACK_IMPORTED_MODULE_2__[
 /*!*********************************************************!*\
   !*** ../mnj-ngx-pdfviewer/src/lib/pdf-viewer-config.ts ***!
   \*********************************************************/
-/*! exports provided: DEFAULT_PDF_VIEW_CONFIG, MNJ_PDF_VIEW_CONFIGURATION_FACTORY, MNJ_PDF_VIEW_CONFIGURATION, MNJ_PDF_VIEW_CONFIGURATION_PROVIDER */
+/*! exports provided: DEFAULT_PDF_VIEWER_CONFIG, MNJ_PDF_VIEWER_CONFIGURATION_FACTORY, MNJ_PDF_VIEWER_CONFIGURATION, MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEW_CONFIG", function() { return DEFAULT_PDF_VIEW_CONFIG; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_FACTORY", function() { return MNJ_PDF_VIEW_CONFIGURATION_FACTORY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION", function() { return MNJ_PDF_VIEW_CONFIGURATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_PROVIDER", function() { return MNJ_PDF_VIEW_CONFIGURATION_PROVIDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEWER_CONFIG", function() { return DEFAULT_PDF_VIEWER_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_FACTORY", function() { return MNJ_PDF_VIEWER_CONFIGURATION_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION", function() { return MNJ_PDF_VIEWER_CONFIGURATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER", function() { return MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services */ "../mnj-ngx-pdfviewer/src/lib/services/index.ts");
 
 
-const DEFAULT_PDF_VIEW_CONFIG = {
+const DEFAULT_PDF_VIEWER_CONFIG = {
     initialPage: 1,
     scale: 'auto',
     rotation: 0,
@@ -8243,17 +8242,17 @@ const DEFAULT_PDF_VIEW_CONFIG = {
     maxPagesRendered: 10,
     rendererPagesThreshold: 2,
 };
-function MNJ_PDF_VIEW_CONFIGURATION_FACTORY(impl) {
-    return impl || DEFAULT_PDF_VIEW_CONFIG;
+function MNJ_PDF_VIEWER_CONFIGURATION_FACTORY(impl) {
+    return impl || DEFAULT_PDF_VIEWER_CONFIG;
 }
 /**
  * Injection token that can be used to configure the
  * behavior of the pdf viewer components.
  */
-const MNJ_PDF_VIEW_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('PDF_VIEW_CONFIG');
-const MNJ_PDF_VIEW_CONFIGURATION_PROVIDER = {
-    provide: MNJ_PDF_VIEW_CONFIGURATION,
-    useFactory: MNJ_PDF_VIEW_CONFIGURATION_FACTORY,
+const MNJ_PDF_VIEWER_CONFIGURATION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('PDF_VIEW_CONFIG');
+const MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER = {
+    provide: MNJ_PDF_VIEWER_CONFIGURATION,
+    useFactory: MNJ_PDF_VIEWER_CONFIGURATION_FACTORY,
 };
 
 
@@ -8655,7 +8654,7 @@ __webpack_require__.r(__webpack_exports__);
 class MnjPdfViewerModule {
 }
 MnjPdfViewerModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: MnjPdfViewerModule });
-MnjPdfViewerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function MnjPdfViewerModule_Factory(t) { return new (t || MnjPdfViewerModule)(); }, providers: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_14__["MNJ_PDF_VIEW_CONFIGURATION_PROVIDER"]], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_0__["ScrollingModule"]]] });
+MnjPdfViewerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function MnjPdfViewerModule_Factory(t) { return new (t || MnjPdfViewerModule)(); }, providers: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_14__["MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER"]], imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_0__["ScrollingModule"]]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](MnjPdfViewerModule, { declarations: [_directives_pdf_viewer__WEBPACK_IMPORTED_MODULE_13__["MnjPdfViewer"],
         _directives_pdf_page_loading__WEBPACK_IMPORTED_MODULE_5__["PdfPageLoading"],
         _directives_pdf_download_button__WEBPACK_IMPORTED_MODULE_4__["PdfDownloadButton"],
@@ -8694,7 +8693,7 @@ MnjPdfViewerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefin
                     _directives_pdf_upload_button__WEBPACK_IMPORTED_MODULE_12__["PdfUploadButton"],
                     _directives_pdf_properties_button__WEBPACK_IMPORTED_MODULE_8__["PdfPropertiesButton"],
                 ],
-                providers: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_14__["MNJ_PDF_VIEW_CONFIGURATION_PROVIDER"]],
+                providers: [_pdf_viewer_config__WEBPACK_IMPORTED_MODULE_14__["MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER"]],
                 exports: [
                     _directives_pdf_viewer__WEBPACK_IMPORTED_MODULE_13__["MnjPdfViewer"],
                     _directives_pdf_page_loading__WEBPACK_IMPORTED_MODULE_5__["PdfPageLoading"],
@@ -8856,13 +8855,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PdfThumbnailViewerRef", function() { return _pdf_thumbnail_viewer_ref__WEBPACK_IMPORTED_MODULE_22__["PdfThumbnailViewerRef"]; });
 
 /* harmony import */ var _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./pdf-viewer-config */ "../mnj-ngx-pdfviewer/src/lib/pdf-viewer-config.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEW_CONFIG", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["DEFAULT_PDF_VIEW_CONFIG"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_PDF_VIEWER_CONFIG", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["DEFAULT_PDF_VIEWER_CONFIG"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_FACTORY", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEW_CONFIGURATION_FACTORY"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_FACTORY", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEWER_CONFIGURATION_FACTORY"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEW_CONFIGURATION"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEWER_CONFIGURATION"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEW_CONFIGURATION_PROVIDER", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEW_CONFIGURATION_PROVIDER"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER", function() { return _pdf_viewer_config__WEBPACK_IMPORTED_MODULE_23__["MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER"]; });
 
 /* harmony import */ var _pdf_viewer_module__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./pdf-viewer.module */ "../mnj-ngx-pdfviewer/src/lib/pdf-viewer.module.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MnjPdfViewerModule", function() { return _pdf_viewer_module__WEBPACK_IMPORTED_MODULE_24__["MnjPdfViewerModule"]; });
@@ -9066,7 +9065,6 @@ class PdfFindController {
         this.searchComplete = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
         this.searchState = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
         this._reset();
-        //eventBus.on("findbarclose", this._onFindBarClose.bind(this));
     }
     get highlightMatches() {
         return this._highlightMatches;
