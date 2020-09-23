@@ -15,7 +15,7 @@ import { PdfAttachmentViewerRef } from '../pdf-attachment-viewer-ref';
 import { PdfOutlineViewerRef } from '../pdf-outline-viewer-ref';
 import { PdfPageViewerRef } from '../pdf-page-viewer-ref';
 import { PdfThumbnailViewerRef } from '../pdf-thumbnail-viewer-ref';
-import { MNJ_PDF_VIEW_CONFIGURATION, PdfViewerConfig } from '../pdf-viewer-config';
+import { MNJ_PDF_VIEWER_CONFIGURATION, PdfViewerConfig } from '../pdf-viewer-config';
 import {
   PdfAttachmentsLoadedEvent,
   PdfDocumentPropertiesEvent,
@@ -142,7 +142,7 @@ export class MnjPdfViewer implements OnDestroy {
     private printManager: PdfPrintManager,
     private registry: PdfViewerRegistry,
     private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(MNJ_PDF_VIEW_CONFIGURATION) private _config: PdfViewerConfig
+    @Inject(MNJ_PDF_VIEWER_CONFIGURATION) private _config: PdfViewerConfig
   ) {
     this._pdfRef = new PdfViewerRef(
       this.renderingQueue,

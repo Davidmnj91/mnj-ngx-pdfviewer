@@ -77,7 +77,6 @@ export class PdfFindController {
 
   constructor() {
     this._reset();
-    //eventBus.on("findbarclose", this._onFindBarClose.bind(this));
   }
 
   get highlightMatches() {

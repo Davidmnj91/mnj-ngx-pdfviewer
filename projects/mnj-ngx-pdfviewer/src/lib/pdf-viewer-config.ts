@@ -12,7 +12,7 @@ export interface PdfViewerConfig {
   rendererPagesThreshold: number;
 }
 
-export const DEFAULT_PDF_VIEW_CONFIG: PdfViewerConfig = {
+export const DEFAULT_PDF_VIEWER_CONFIG: PdfViewerConfig = {
   initialPage: 1,
   scale: 'auto',
   rotation: 0,
@@ -27,17 +27,17 @@ export const DEFAULT_PDF_VIEW_CONFIG: PdfViewerConfig = {
   rendererPagesThreshold: 2,
 };
 
-export function MNJ_PDF_VIEW_CONFIGURATION_FACTORY(impl: PdfViewerConfig): PdfViewerConfig {
-  return impl || DEFAULT_PDF_VIEW_CONFIG;
+export function MNJ_PDF_VIEWER_CONFIGURATION_FACTORY(impl: PdfViewerConfig): PdfViewerConfig {
+  return impl || DEFAULT_PDF_VIEWER_CONFIG;
 }
 
 /**
  * Injection token that can be used to configure the
  * behavior of the pdf viewer components.
  */
-export const MNJ_PDF_VIEW_CONFIGURATION = new InjectionToken<PdfViewerConfig>('PDF_VIEW_CONFIG');
+export const MNJ_PDF_VIEWER_CONFIGURATION = new InjectionToken<PdfViewerConfig>('PDF_VIEW_CONFIG');
 
-export const MNJ_PDF_VIEW_CONFIGURATION_PROVIDER = {
-  provide: MNJ_PDF_VIEW_CONFIGURATION,
-  useFactory: MNJ_PDF_VIEW_CONFIGURATION_FACTORY,
+export const MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER = {
+  provide: MNJ_PDF_VIEWER_CONFIGURATION,
+  useFactory: MNJ_PDF_VIEWER_CONFIGURATION_FACTORY,
 };

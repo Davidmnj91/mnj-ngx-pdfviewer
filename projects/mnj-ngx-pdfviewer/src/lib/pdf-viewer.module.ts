@@ -12,7 +12,7 @@ import { PdfThumbnailViewer } from './directives/pdf-thumbnail-viewer';
 import { PdfTocViewer } from './directives/pdf-toc-viewer';
 import { PdfUploadButton } from './directives/pdf-upload-button';
 import { MnjPdfViewer } from './directives/pdf-viewer';
-import { MNJ_PDF_VIEW_CONFIGURATION_PROVIDER } from './pdf-viewer-config';
+import { MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER } from './pdf-viewer-config';
 
 @NgModule({
   imports: [CommonModule, ScrollingModule],
@@ -29,7 +29,7 @@ import { MNJ_PDF_VIEW_CONFIGURATION_PROVIDER } from './pdf-viewer-config';
     PdfUploadButton,
     PdfPropertiesButton,
   ],
-  providers: [MNJ_PDF_VIEW_CONFIGURATION_PROVIDER],
+  providers: [MNJ_PDF_VIEWER_CONFIGURATION_PROVIDER],
   exports: [
     MnjPdfViewer,
     PdfPageLoading,
