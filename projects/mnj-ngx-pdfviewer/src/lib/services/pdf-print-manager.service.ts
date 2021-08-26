@@ -78,7 +78,7 @@ export class PdfPrintManager {
       this.pageStyleSheet.textContent = this._addStylesForPrinting(pageSize.width, pageSize.height);
       body.appendChild(this.pageStyleSheet);
 
-      resolve();
+      resolve(undefined);
     });
   }
 
@@ -189,7 +189,7 @@ export class PdfPrintManager {
     return new Promise((resolve) => {
       setTimeout(() => {
         if (!this.active) {
-          resolve();
+          resolve(undefined);
           return;
         }
         this.printContainer.style.display = 'block';
@@ -202,7 +202,7 @@ export class PdfPrintManager {
 
   private ensureOverlay() {
     if (!this.overlayPromise) {
-      this.overlayPromise = new Promise((resolve) => resolve());
+      this.overlayPromise = new Promise((resolve) => resolve(undefined));
     }
     this.scratchCanvas = document.createElement('canvas');
     this.activeService = this;
