@@ -1,24 +1,25 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 @import '../../../../dist/mnj-ngx-pdfviewer/pdf-viewer-theme.scss';
 
-@include mat-core();
+@include mat.core();
 
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$dark-app-primary: mat.define-palette(mat.$indigo-palette);
+$dark-app-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 
-$candy-app-warn: mat-palette($mat-red);
+$dark-app-warn: mat.define-palette(mat.$red-palette);
 
-$candy-app-theme: mat-dark-theme(
+$dark-app-theme: mat.define-dark-theme(
   (
     color: (
-      primary: $candy-app-primary,
-      accent: $candy-app-accent,
-      warn: $candy-app-warn,
+      primary: $dark-app-primary,
+      accent: $dark-app-accent,
+      warn: $dark-app-warn,
     ),
   )
 );
 
 .dark-theme {
-  @include angular-material-theme($candy-app-theme);
-  @include mnj-pdf-viewer-theme($candy-app-theme);
+  @include mat.all-component-themes($dark-app-theme);
+  @include mnj-pdf-viewer-theme($dark-app-theme);
 }
