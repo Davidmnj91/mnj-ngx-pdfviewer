@@ -1,8 +1,9 @@
-@import '~@angular/material/core/style/elevation';
-@import '~@angular/material/core/theming/palette';
-@import '~@angular/material/core/theming/theming';
-@import '~@angular/material/core/style/private';
-@import '~@angular/material/core/typography/typography-utils';
+@use '~@angular/material/core/style/elevation';
+@use '~@angular/material/core/theming/palette';
+@use '~@angular/material/core/theming/theming';
+@use '~@angular/material/core/style/private';
+@use '~@angular/material/core/typography/typography-utils';
+@use 'sass:map';
 
 @mixin mnj-pdf-viewer-theme($theme) {
   $color-config: mat-get-color-config($theme);
@@ -10,9 +11,9 @@
   $typography-config: mat-get-typography-config($theme);
 
   // Extract the palettes you need from the theme definition.
-  $foreground: map-get($color-config, foreground);
-  $primary: map-get($color-config, primary);
-  $accent: map-get($color-config, accent);
+  $foreground: map.get($color-config, foreground);
+  $primary: map.get($color-config, primary);
+  $accent: map.get($color-config, accent);
 
   // PAGES
   .pdf-page {

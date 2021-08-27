@@ -3,22 +3,22 @@
 
 @include mat-core();
 
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-app-primary: mat-palette($mat-indigo);
+$light-app-accent: mat-palette($mat-pink, A200, A100, A400);
 
-$candy-app-warn: mat-palette($mat-red);
+$light-app-warn: mat-palette($mat-red);
 
-$candy-app-theme: mat-light-theme(
+$light-app-theme: mat-light-theme(
   (
     color: (
-      primary: $candy-app-primary,
-      accent: $candy-app-accent,
-      warn: $candy-app-warn,
+      primary: $light-app-primary,
+      accent: $light-app-accent,
+      warn: $light-app-warn,
     ),
   )
 );
 
 .light-theme {
-  @include angular-material-theme($candy-app-theme);
-  @include mnj-pdf-viewer-theme($candy-app-theme);
+  @include angular-material-theme($light-app-theme);
+  @include mnj-pdf-viewer-theme($light-app-theme);
 }
