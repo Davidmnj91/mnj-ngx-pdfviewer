@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @use '~@angular/material/core/style/elevation';
 @use '~@angular/material/core/theming/palette';
 @use '~@angular/material/core/theming/theming';
@@ -17,22 +18,22 @@
 
   // PAGES
   .pdf-page {
-    background-color: mat-color($accent);
-    @include mat-elevation(6, mat-color($foreground, text));
+    background-color: mat.get-color-from-palette($accent);
+    @include mat.elevation(6, mat.get-color-from-palette($foreground, text));
   }
 
   // TEXT LAYER
   .textLayer {
     span {
       &::selection {
-        background-color: mat-color($primary);
+        background-color: mat.get-color-from-palette($primary);
       }
 
       &.highlight {
-        background-color: mat-color($primary, default, 0.8);
+        background-color: mat.get-color-from-palette($primary, default, 0.8);
 
         &.selected {
-          background-color: mat-color($accent);
+          background-color: mat.get-color-from-palette($accent);
         }
       }
     }
@@ -42,9 +43,9 @@
   .annotationLayer {
     .popupWrapper {
       .popup {
-        @include mat-elevation(4, mat-color($foreground, text));
+        @include mat.elevation(4, mat.get-color-from-palette($foreground, text));
         background-color: rgba(255, 255, 153, 1);
-        color: mat-color($foreground, text);
+        color: mat.get-color-from-palette($foreground, text);
 
         p {
           border-top-color: rgba(51, 51, 51, 1);
@@ -57,20 +58,20 @@
       font-size: 1em;
 
       &:hover {
-        background: mat-color($primary, default, 0.2);
-        @include mat-elevation(3, mat-color($foreground, text));
+        background: mat.get-color-from-palette($primary, default, 0.2);
+        @include mat.elevation(3, mat.get-color-from-palette($foreground, text));
       }
     }
   }
 
   // THUMBNAIL
   .pdf-thumbnail {
-    @include mat-elevation(1, mat-color($foreground, text));
+    @include mat.elevation(1, mat.get-color-from-palette($foreground, text));
 
     transition: box-shadow 0.3s $swift-ease-out-timing-function;
 
     &.selected {
-      @include mat-elevation(1, mat-color($foreground, text));
+      @include mat.elevation(1, mat.get-color-from-palette($foreground, text));
     }
   }
 
@@ -92,7 +93,7 @@
 
     .outlineItem {
       > a {
-        color: mat-color($foreground, text);
+        color: mat.get-color-from-palette($foreground, text);
       }
     }
   }
@@ -100,9 +101,9 @@
   // ATTACHMENTS
   .attachmentsItem {
     > button {
-      background-color: mat-color($primary);
-      border-color: mat-color($primary);
-      color: mat-color($foreground, text);
+      background-color: mat.get-color-from-palette($primary);
+      border-color: mat.get-color-from-palette($primary);
+      color: mat.get-color-from-palette($foreground, text);
       -webkit-tap-highlight-color: transparent;
     }
   }
